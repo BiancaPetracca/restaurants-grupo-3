@@ -51,4 +51,14 @@ public class Lugar {
         return almas.stream()
                 .anyMatch(alma -> alma.puedeSerAtormentadaHastaLaLocura(demonio));
     }
+
+    public Set<Alma> almasCazablesPara(Demonio demonio){
+        return almas.stream()
+                .filter(alma -> ! demonio.esJodida(alma)).collect(Collectors.toSet());
+    }
+
+
+    public Double porcentajeDeAlmasCazablesPara(Demonio demonio){
+        return 1.0 * almasCazablesPara(demonio).size() / almas.size();
+    }
 }
