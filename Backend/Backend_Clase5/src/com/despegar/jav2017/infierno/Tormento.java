@@ -3,7 +3,7 @@ package com.despegar.jav2017.infierno;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Tormento extends Mision {
+public class Tormento implements Mision {
 
     private Set<Lugar> lugares = new HashSet<>();
 
