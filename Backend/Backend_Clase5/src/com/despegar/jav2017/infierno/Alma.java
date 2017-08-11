@@ -31,9 +31,7 @@ public class Alma {
     }
 
     public Boolean puedeSerAtormentadaHastaLaLocura(Demonio demonio){
-        Alma alma = this;
-        demonio.atormentar(alma);
-        return alma.getBondad() < 10;
+        return bondad - demonio.getBondadQueDisminuyeEnAlmas() < 10;
     }
 
     public void hacerFriolenta(){

@@ -8,8 +8,15 @@ public abstract class Demonio {
 
     private Double nivelDeMaldad;
     private Integer limiteDeNivelDeValor;
+    private Double poderEntregado;
     private Set<Alma> almasCazadas = new HashSet<>();
     protected EstadoDeAnimo estadoDeAnimo = new Normal();
+
+    private static Integer bondadQueDisminuyeEnAlmas;
+
+    public Integer getBondadQueDisminuyeEnAlmas() {
+        return bondadQueDisminuyeEnAlmas;
+    }
 
     public Boolean esJodida(Alma alma){
         return getNivelDeMaldadRequerido() > alma.getBondad() &&
@@ -24,6 +31,14 @@ public abstract class Demonio {
     public Set<Alma> almasCazables(Lugar lugar){
         return lugar.getAlmas().stream().filter(this::esJodida)
                 .collect(Collectors.toSet());
+    }
+
+    public Double getPoderEntregado(){
+        return poderEntregado;
+    }
+
+    public void agregarPoderEntregado(){
+        poderEntregado += almasCazadas.stream().mapToDouble(Alma::poder).sum();
     }
 
 
@@ -50,7 +65,7 @@ public abstract class Demonio {
     }
 
     public void atormentar(Alma alma){
-        alma.disminuirBondad(5);
+        alma.disminuirBondad(bondadQueDisminuyeEnAlmas);
         this.ponerObstaculos(alma);
     }
 
@@ -81,15 +96,21 @@ public abstract class Demonio {
 
     public void rendirCuentas(Diablo diablo){
         entregarAlmas(diablo);
+        agregarPoderEntregado();
         vaciarAlmas();
     }
 
     private void entregarAlmas(Diablo diablo) {
         if(almasCazadas.isEmpty())
-            diablo.castigar(this);
+            this.serCastigado();
         else
             diablo.absorber(almasCazadas);
 
+    }
+
+    public void serCastigado(){
+        nivelDeMaldad *= 0.9;
+        deprimirse();
     }
 
     public void vaciarAlmas() {

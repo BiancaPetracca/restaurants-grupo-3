@@ -6,11 +6,13 @@ public class DemonioDeSombras extends Demonio {
 
     @Override
     public Boolean puedeCazar(Alma alma) {
+
         return !alma.esFriolenta();
     }
 
     @Override
     protected void ponerObstaculos(Alma alma) {
+
         alma.disminuirNivelDeValor(0.5);
     }
 }

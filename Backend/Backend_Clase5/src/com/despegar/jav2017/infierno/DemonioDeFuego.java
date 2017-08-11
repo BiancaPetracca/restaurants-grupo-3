@@ -9,7 +9,7 @@ public class DemonioDeFuego extends Demonio {
 
     @Override
     protected void ponerObstaculos(Alma alma) {
-
+        estadoDeAnimo.dejarDeSerFriolenta(alma);
     }
 
 }
