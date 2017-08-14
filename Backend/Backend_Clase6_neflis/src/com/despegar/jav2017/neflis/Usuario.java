@@ -22,8 +22,5 @@ public class Usuario {
             .anyMatch(serie -> serie.fueVisto(capitulo));
     }
 
-    public Set<String> generosQueVio(){
-
-    }
 }
 
