@@ -44,11 +44,17 @@ public class Serie extends Contenido {
                 .sum();
     }
 
+    private void chequearQueTengaCapitulos(){
+        if(getCapitulos().isEmpty())
+            throw new RuntimeException("La serie no tiene capitulos disponibles");
+    }
+
     public Capitulo ultimoCapituloDisponible() {
+        chequearQueTengaCapitulos();
         return getCapitulos()
                 .stream()
                 .max(Comparator.comparingInt(Capitulo::getOrden))
-                .orElse(new NingunCapitulo());
+                .get();
 
     }
 
