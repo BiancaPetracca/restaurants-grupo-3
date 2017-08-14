@@ -3,7 +3,7 @@ package com.despegar.jav2017.neflis;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Capitulo extends Contenido {
+public class Capitulo {
 
     private Set<String> actoresInvitados = new HashSet<>();
     private Integer duracion;
@@ -13,12 +13,10 @@ public class Capitulo extends Contenido {
         return actoresInvitados.contains(actor);
     }
 
-    @Override
     public Boolean fueCompletamenteVistoPor(Usuario usuario) {
         return usuario.vio(this);
     }
 
-    @Override
     public Integer getDuracion() {
         return duracion;
     }
