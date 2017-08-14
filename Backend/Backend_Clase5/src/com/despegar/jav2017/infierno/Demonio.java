@@ -18,26 +18,26 @@ public abstract class Demonio {
         return bondadQueDisminuyeEnAlmas;
     }
 
-    public Boolean esJodida(Alma alma){
+    public Boolean esJodida(Alma alma) {
         return getNivelDeMaldadRequerido() > alma.getBondad() &&
                 this.puedeCazar(alma);
     }
 
-    public Double getNivelDeMaldadRequerido(){
+    public Double getNivelDeMaldadRequerido() {
         return nivelDeMaldad *
                 estadoDeAnimo.getPorcentajeDeMaldadRequerido();
     }
 
-    public Set<Alma> almasCazables(Lugar lugar){
+    public Set<Alma> almasCazables(Lugar lugar) {
         return lugar.getAlmas().stream().filter(this::esJodida)
                 .collect(Collectors.toSet());
     }
 
-    public Double getPoderEntregado(){
+    public Double getPoderEntregado() {
         return poderEntregado;
     }
 
-    public void agregarPoderEntregado(){
+    public void agregarPoderEntregado() {
         poderEntregado += almasCazadas.stream().mapToDouble(Alma::poder).sum();
     }
 
@@ -52,26 +52,26 @@ public abstract class Demonio {
         return nivelDeMaldad;
     }
 
-    public void aumentarNivelDeMaldad(Integer cantidad){
+    public void aumentarNivelDeMaldad(Integer cantidad) {
         nivelDeMaldad += cantidad;
     }
 
-    public void disminuirNivelDeMaldadHasta(Double porcentaje){
+    public void disminuirNivelDeMaldadHasta(Double porcentaje) {
         nivelDeMaldad *= porcentaje;
     }
 
-    public void cazar(Alma alma){
+    public void cazar(Alma alma) {
         almasCazadas.add(alma);
     }
 
-    public void atormentar(Alma alma){
+    public void atormentar(Alma alma) {
         alma.disminuirBondad(bondadQueDisminuyeEnAlmas);
         this.ponerObstaculos(alma);
     }
 
     protected abstract void ponerObstaculos(Alma alma);
 
-    public void intentarCazar(Lugar lugar, Alma alma){
+    public void intentarCazar(Lugar lugar, Alma alma) {
         if (esJodida(alma))
             cazar(alma);
         else {
@@ -80,12 +80,12 @@ public abstract class Demonio {
         }
     }
 
-    public void salirACazar(Lugar lugar){
+    public void salirACazar(Lugar lugar) {
         lugar.ataqueDe(this);
     }
 
     public void ponerseFelizSiCazoMucho() {
-        if(almasCazadas.size() > 20)
+        if (almasCazadas.size() > 20)
             ponerseFeliz();
     }
 
@@ -94,21 +94,21 @@ public abstract class Demonio {
     }
 
 
-    public void rendirCuentas(Diablo diablo){
+    public void rendirCuentas(Diablo diablo) {
         entregarAlmas(diablo);
         agregarPoderEntregado();
         vaciarAlmas();
     }
 
     private void entregarAlmas(Diablo diablo) {
-        if(almasCazadas.isEmpty())
+        if (almasCazadas.isEmpty())
             this.serCastigado();
         else
             diablo.absorber(almasCazadas);
 
     }
 
-    public void serCastigado(){
+    public void serCastigado() {
         nivelDeMaldad *= 0.9;
         deprimirse();
     }

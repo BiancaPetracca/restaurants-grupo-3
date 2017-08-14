@@ -6,11 +6,11 @@ public abstract class EstadoDeAnimo {
 
     public abstract Double getPorcentajeDeMaldadRequerido();
 
-    public void hacerFriolenta(Alma alma){
+    public void hacerFriolenta(Alma alma) {
         alma.hacerFriolenta();
     }
 
-    public void dejarDeSerFriolenta(Alma alma){
+    public void dejarDeSerFriolenta(Alma alma) {
         alma.dejarDeSerFriolenta();
     }
 }

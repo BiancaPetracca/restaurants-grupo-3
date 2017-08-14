@@ -12,12 +12,12 @@ public class Deprimido extends EstadoDeAnimo {
     }
 
     @Override
-    public void hacerFriolenta(Alma alma){
+    public void hacerFriolenta(Alma alma) {
 
     }
 
     @Override
-    public void dejarDeSerFriolenta(Alma alma){
+    public void dejarDeSerFriolenta(Alma alma) {
 
     }
 }

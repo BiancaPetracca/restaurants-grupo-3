@@ -1,7 +1,14 @@
 package com.despegar.jav2017.infierno;
 
 public class Alma {
-;
+    ;
+
+    public Alma(Integer bondad, Double nivelDeValor, Boolean friolenta) {
+        this.bondad = bondad;
+        this.nivelDeValor = nivelDeValor;
+        this.friolenta = friolenta;
+    }
+
     private Integer bondad;
     private Double nivelDeValor;
     private Boolean friolenta;
@@ -30,15 +37,15 @@ public class Alma {
         return nivelDeValor + bondad;
     }
 
-    public Boolean puedeSerAtormentadaHastaLaLocura(Demonio demonio){
+    public Boolean puedeSerAtormentadaHastaLaLocura(Demonio demonio) {
         return bondad - demonio.getBondadQueDisminuyeEnAlmas() < 10;
     }
 
-    public void hacerFriolenta(){
+    public void hacerFriolenta() {
         this.friolenta = true;
     }
 
-    public void dejarDeSerFriolenta(){
+    public void dejarDeSerFriolenta() {
         this.friolenta = false;
     }
 

@@ -9,7 +9,7 @@ public class Tormento implements Mision {
 
     @Override
     public Boolean puedeSerCumplidaPor(Demonio demonio) {
-       return lugares.stream()
+        return lugares.stream()
                 .anyMatch(lugar -> lugar.existeUnAlmaAtormentadaHastaLaLocuraPor(demonio));
     }
 }
