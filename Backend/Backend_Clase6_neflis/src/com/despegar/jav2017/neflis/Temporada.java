@@ -5,13 +5,14 @@ import java.util.Set;
 
 public class Temporada extends Contenido {
 
-    private Set<Capitulo> capitulos = new HashSet<>();
-    private Integer cantidadDeCapitulos;
-
-    public Temporada(Set<Capitulo> capitulos, Integer cantidadDeCapitulos) {
+    public Temporada(String genero, Boolean destacado, Set<Capitulo> capitulos, Integer cantidadDeCapitulos) {
+        super(genero, destacado);
         this.capitulos = capitulos;
         this.cantidadDeCapitulos = cantidadDeCapitulos;
     }
+
+    private Set<Capitulo> capitulos = new HashSet<>();
+    private Integer cantidadDeCapitulos;
 
     public Set<Capitulo> getCapitulos() {
         return capitulos;
