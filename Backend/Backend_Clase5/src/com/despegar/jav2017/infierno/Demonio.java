@@ -1,18 +1,33 @@
 package com.despegar.jav2017.infierno;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public abstract class Demonio {
+import static java.lang.Integer.max;
 
-    private Double nivelDeMaldad;
+public abstract class Demonio {
+    public Demonio(Integer limiteDeNivelDeValor, String nombre) {
+        if(limiteDeNivelDeValor < 0)
+            LOGGER.warn("El limite de nivel de valor del demonio {} era {} y tiene que ser positivo así que se establecerá en 0",
+                    this, limiteDeNivelDeValor);
+
+        this.limiteDeNivelDeValor = max(0, limiteDeNivelDeValor);
+        this.nombre = nombre;
+        LOGGER.info("Se creó un nuevo demonio: {}", this);
+    }
+
+    protected Double nivelDeMaldad;
     private Integer limiteDeNivelDeValor;
-    private Double poderEntregado;
+    private Double poderEntregado = 0.0;
     private Set<Alma> almasCazadas = new HashSet<>();
     protected EstadoDeAnimo estadoDeAnimo = new Normal();
-
     private static Integer bondadQueDisminuyeEnAlmas;
+    private String nombre;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Demonio.class);
 
     public Integer getBondadQueDisminuyeEnAlmas() {
         return bondadQueDisminuyeEnAlmas;
@@ -57,6 +72,7 @@ public abstract class Demonio {
     }
 
     public void disminuirNivelDeMaldadHasta(Double porcentaje) {
+
         nivelDeMaldad *= porcentaje;
     }
 
@@ -65,6 +81,7 @@ public abstract class Demonio {
     }
 
     public void atormentar(Alma alma) {
+        LOGGER.info("El demonio " + nombre + " está atormentando a un alma");
         alma.disminuirBondad(bondadQueDisminuyeEnAlmas);
         this.ponerObstaculos(alma);
     }
@@ -109,6 +126,7 @@ public abstract class Demonio {
     }
 
     public void serCastigado() {
+        LOGGER.info("El demonio " + nombre + " esta siendo castigado");
         nivelDeMaldad *= 0.9;
         deprimirse();
     }
@@ -127,6 +145,10 @@ public abstract class Demonio {
 
     public void normalizarse() {
         this.estadoDeAnimo = new Normal();
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }
 
