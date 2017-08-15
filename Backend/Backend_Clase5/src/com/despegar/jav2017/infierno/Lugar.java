@@ -1,12 +1,23 @@
 package com.despegar.jav2017.infierno;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lugar {
 
+    public Lugar(Set<Alma> almas, String nombre) {
+        this.almas = almas;
+        this.nombre = nombre;
+    }
+
     private Set<Alma> almas = new HashSet<>();
+    private final static Logger LOGGER = LoggerFactory.getLogger(Lugar.class);
+    private String nombre;
+
 
     public Set<Alma> getAlmas() {
         return almas;
@@ -26,6 +37,7 @@ public class Lugar {
     }
 
     public void ataqueDe(Demonio demonio) {
+        LOGGER.info("El demonio " + demonio.getNombre() + " está atacando el lugar " + nombre);
         Integer aumentoDeMaldad = aumentoDeMaldadPara(demonio);
         almas.forEach(alma -> {
                     demonio.intentarCazar(this, alma);
