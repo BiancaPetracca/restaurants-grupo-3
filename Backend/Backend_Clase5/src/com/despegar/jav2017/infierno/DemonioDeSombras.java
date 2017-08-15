@@ -2,7 +2,12 @@ package com.despegar.jav2017.infierno;
 
 public class DemonioDeSombras extends Demonio {
 
-    private static Integer nivelDeMaldad = 50;
+    public DemonioDeSombras(Integer limiteDeNivelDeValor, String nombre) {
+        super(limiteDeNivelDeValor, nombre);
+    }
+
+    private static Double nivelDeMaldad = 50.0;
+
 
     @Override
     public Boolean puedeCazar(Alma alma) {
