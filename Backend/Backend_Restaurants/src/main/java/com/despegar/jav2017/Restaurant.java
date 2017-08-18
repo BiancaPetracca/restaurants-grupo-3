@@ -10,4 +10,7 @@ public class Restaurant {
     private Double costoPorPersona;
     private Boolean activo;
 
+    public Boolean tieneMejorReferenciaQue(Integer referenciaMinima) {
+        return recomendaciones > referenciaMinima;
+    }
 }
