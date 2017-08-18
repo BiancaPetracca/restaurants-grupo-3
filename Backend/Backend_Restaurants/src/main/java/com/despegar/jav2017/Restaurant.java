@@ -13,4 +13,8 @@ public class Restaurant {
     public Boolean tieneMejorReferenciaQue(Integer referenciaMinima) {
         return recomendaciones > referenciaMinima;
     }
+
+    public Boolean estaActivo() {
+        return activo;
+    }
 }

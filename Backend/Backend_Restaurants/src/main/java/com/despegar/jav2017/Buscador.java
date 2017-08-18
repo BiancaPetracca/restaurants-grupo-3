@@ -6,9 +6,10 @@ import java.util.stream.Collectors;
 public class Buscador {
 
 
-    public List<Restaurant> buscar(List<Restaurant> restaurants, Criterio criterio){
-        return restaurants.stream().filter(criterio::cumple)
-        .collect(Collectors.toList());
+    public List<Restaurant> buscar(List<Restaurant> restaurants, Criterio criterio) {
+        return restaurants.stream().filter(restaurant ->
+                criterio.cumple(restaurant) && restaurant.estaActivo())
+                .collect(Collectors.toList());
     }
 
 }
